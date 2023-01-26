@@ -37,3 +37,15 @@ StepZen field based access rules are used to only expose the reshaped top-level 
 This means an authenticated client (in this case open access, typically with a JWT) will only see the fields and types
 of the resphaped API. These clients have no visibility into the underlying countries `Query` fields and types.
 
+## Deploying and exploring
+
+You can simply run
+```
+stepzen deploy
+
+```
+at the root of this repository. This will deploy the endpoint named `test/reshape`.
+
+Sample operations are in [operations.graphql](operations.graphql) with examples
+of running them using `stepzen request` in [Operations](Operations.md).
+

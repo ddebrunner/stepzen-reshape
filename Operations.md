@@ -1,7 +1,7 @@
 
 # Sample operations
 
-Sample operations are in `operations.graphql`
+Sample operations are in [operations.graphql](operations.graphql)
 
 ## Basic
 
