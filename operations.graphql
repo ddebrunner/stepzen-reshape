@@ -1,0 +1,55 @@
+# Sample operations
+
+## Basic
+
+# The reshaped `Query.country`, exposing a schema
+# reshaped from countries GraphQL API. A good code to use is `BE`.
+#
+# This is an open field
+
+query Country ($code:ID!) {
+  country(code: $code) {
+    code
+    name
+    capital
+    landmass
+    languages
+  }
+}
+
+# Shows the exposed fields in Query and exposed types.
+query Introspection {
+  __type(name:"Query") {
+    fields {
+      name
+    }
+  }
+  __schema {
+    types {
+      name
+    }
+  }
+}
+
+# This shows the same information being returned in its
+# reshaped and original form. A good code to use is `BE`.
+# This requires an admin or api key to show the original.
+
+query BasicCompare ($code:ID!) {
+  reshaped: country(code: $code) {
+    code
+    name
+    capital
+    landmass
+    languages
+  }
+  original: Countries_country(code: $code) {
+    code native capital
+    continent {
+      name
+    }
+    languages {
+      code name native
+    }
+  }
+}
