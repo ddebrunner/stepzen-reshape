@@ -35,8 +35,6 @@ stepzen request -H Authorization: \
 ### BasicCompare
 
 This shows the same information being returned in its reshaped and original form. 
-to show the original.
-
 ```
 stepzen request \
    --operation-name=BasicCompare \

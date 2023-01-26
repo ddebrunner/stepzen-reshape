@@ -42,7 +42,6 @@ of the resphaped API. These clients have no visibility into the underlying count
 You can simply run
 ```
 stepzen deploy
-
 ```
 at the root of this repository. This will deploy the endpoint named `test/reshape`.
 
