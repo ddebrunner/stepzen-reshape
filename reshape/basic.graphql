@@ -1,13 +1,15 @@
 extend type Query {
-  country(code:ID!) :Country
-    @sequence(steps:
-       [
-        {query:"Countries_country"}
-        {query:"_country_factory" arguments:{name:"name" field:"native"}}
-       ]
-   )
+  country(code: ID!): Country
+    @sequence(
+      steps: [
+        { query: "Countries_country" }
+        {
+          query: "_country_factory"
+          arguments: { name: "name", field: "native" }
+        }
+      ]
+    )
 }
-
 
 """
 Type is subsetted from Countries_Country
@@ -15,7 +17,7 @@ Type is subsetted from Countries_Country
 type Country {
   # these fields are a simple subset
   code: ID!
-  capital:String
+  capital: String
 
   """
   this is a rename of Countries_Country.native
@@ -25,12 +27,14 @@ type Country {
   """
   example of pulling up a field from a nested object
   """
-  landmass: String! @materializer(query:"Countries_country {continent { name }}")
+  landmass: String!
+    @materializer(query: "Countries_country {continent { name }}")
 
   """
   example of pulling up a field from an array of nested objects
   """
-  languages:[String] @materializer(query:"Countries_country { languages { native} }")
+  languages: [String]
+    @materializer(query: "Countries_country { languages { native} }")
 }
 
 extend type Query {
@@ -38,5 +42,6 @@ extend type Query {
   creates an instance of Country just be echoing its arguments.
   ideally this would be automated into @materializer.
   """
-  _country_factory(code:ID! name:String! capital:String):Country @connector(type:"echo")
+  _country_factory(code: ID!, name: String!, capital: String): Country
+    @connector(type: "echo")
 }

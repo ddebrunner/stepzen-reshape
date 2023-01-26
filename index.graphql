@@ -1,9 +1,3 @@
-schema
-  @sdl(
-    files: [
-      "countries/index.graphql"
-      "reshape/basic.graphql"
-    ]
-  ) {
+schema @sdl(files: ["countries/index.graphql", "reshape/basic.graphql"]) {
   query: Query
 }
