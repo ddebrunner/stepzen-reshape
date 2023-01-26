@@ -1,0 +1,12 @@
+access:
+  policies:
+    - type: Query
+      rules:
+        - condition: "true"
+          fields:
+            - country
+        - condition: "true"
+          name: introspection
+          fields:
+            - __schema
+            - __type

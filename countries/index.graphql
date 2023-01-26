@@ -1,0 +1,94 @@
+input Countries_ContinentFilterInput {
+  code: Countries_StringQueryOperatorInput
+}
+
+input Countries_CountryFilterInput {
+  code: Countries_StringQueryOperatorInput
+  currency: Countries_StringQueryOperatorInput
+  continent: Countries_StringQueryOperatorInput
+}
+
+input Countries_LanguageFilterInput {
+  code: Countries_StringQueryOperatorInput
+}
+
+input Countries_StringQueryOperatorInput {
+  eq: String
+  ne: String
+  in: [String]
+  nin: [String]
+  regex: String
+  glob: String
+}
+
+type Countries_Continent {
+  code: ID!
+  name: String!
+  countries: [Countries_Country!]!
+}
+
+type Countries_Country {
+  code: ID!
+  name: String!
+  native: String!
+  phone: String!
+  continent: Countries_Continent!
+  capital: String
+  currency: String
+  languages: [Countries_Language!]!
+  emoji: String!
+  emojiU: String!
+  states: [Countries_State!]!
+}
+
+type Countries_Language {
+  code: ID!
+  name: String
+  native: String
+  rtl: Boolean!
+}
+
+type Countries_State {
+  code: String
+  name: String!
+  country: Countries_Country!
+}
+
+type Query {
+  Countries_countries(
+    filter: Countries_CountryFilterInput
+  ): [Countries_Country!]!
+    @graphql(
+      endpoint: "https://countries.trevorblades.com/graphql"
+      prefix: { includeRootOperations: true, value: "Countries_" }
+    )
+  Countries_country(code: ID!): Countries_Country
+    @graphql(
+      endpoint: "https://countries.trevorblades.com/graphql"
+      prefix: { includeRootOperations: true, value: "Countries_" }
+    )
+  Countries_continents(
+    filter: Countries_ContinentFilterInput
+  ): [Countries_Continent!]!
+    @graphql(
+      endpoint: "https://countries.trevorblades.com/graphql"
+      prefix: { includeRootOperations: true, value: "Countries_" }
+    )
+  Countries_continent(code: ID!): Countries_Continent
+    @graphql(
+      endpoint: "https://countries.trevorblades.com/graphql"
+      prefix: { includeRootOperations: true, value: "Countries_" }
+    )
+  Countries_languages(
+    filter: Countries_LanguageFilterInput
+  ): [Countries_Language!]!
+    @graphql(
+      endpoint: "https://countries.trevorblades.com/graphql"
+      prefix: { includeRootOperations: true, value: "Countries_" }
+    )
+  Countries_language(code: ID!): Countries_Language
+    @graphql(
+      endpoint: "https://countries.trevorblades.com/graphql"
+      prefix: { includeRootOperations: true, value: "Countries_" }
+    )
+}
