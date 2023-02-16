@@ -10,8 +10,8 @@ Sample operations are in [operations.graphql](operations.graphql)
 Run the exposed simplified API using `Query.country`.
 ```
 stepzen request -H Authorization: \
+   -f operations.graphql \
    --operation-name=Country \
-   "`cat operations.graphql`" \
    --var code=BE
 ```
 > **Note**
@@ -23,8 +23,8 @@ stepzen request -H Authorization: \
 Shows the exposed fields in `Query` and exposed types for the reshaped API.
 ```
 stepzen request -H Authorization: \
-   --operation-name=Introspection \
-   "`cat operations.graphql`"
+   -f operations.graphql \
+   --operation-name=Introspection
 ```
 > **Note**
 > None of the underlying `Query` fields or types from countries are exposed
@@ -35,7 +35,7 @@ stepzen request -H Authorization: \
 This shows the same information being returned in its reshaped and original form. 
 ```
 stepzen request \
+   -f operations.graphql \
    --operation-name=BasicCompare \
-   "`cat operations.graphql`" \
    --var code=BE
 ```
